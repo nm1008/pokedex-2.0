@@ -12,9 +12,6 @@ const Navbar = () => {
             </h1>
           </a>
         </div>
-        {/* <div className="">
-          <input type="search" className="border-b-2 w-full border-gray-200 py-1 px-1"/>
-        </div> */}
       </nav>
     </header>
   );

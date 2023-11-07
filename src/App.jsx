@@ -1,21 +1,30 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import Cards from "./components/Cards";
 import Button from "./components/Button";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
+import { usePokemonStore } from "./zustand/store";
+
+import { useEffect } from "react";
 
 const App = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon"
-  );
-  const [image, setImage] = useState();
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [prevPageUrl, setPrevPageUrl] = useState();
-  const [loading, setLoading] = useState(true);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  //Zustand states
+  const {
+    pokemons,
+    setPokemons,
+    currentPageUrl,
+    setCurrentPageUrl,
+    nextPageUrl,
+    setNextPageUrl,
+    prevPageUrl,
+    setPrevPageUrl,
+    loading,
+    setLoading,
+    selectedPokemon,
+    setSelectedPokemon,
+  } = usePokemonStore();
 
   useEffect(() => {
     setLoading(true);
@@ -32,7 +41,7 @@ const App = () => {
         setLoading(false);
       });
     });
-  }, [currentPageUrl]);
+  }, [currentPageUrl, setLoading, setNextPageUrl, setPokemons, setPrevPageUrl]);
 
   const handleCardClick = (pokemon) => {
     setSelectedPokemon(pokemon);
