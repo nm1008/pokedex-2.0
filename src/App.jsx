@@ -9,7 +9,6 @@ import { usePokemonStore } from "./zustand/store";
 import { useEffect } from "react";
 
 const App = () => {
-
   //Zustand states
   const {
     pokemons,
@@ -25,6 +24,9 @@ const App = () => {
     selectedPokemon,
     setSelectedPokemon,
   } = usePokemonStore();
+
+  const styledButtons =
+    "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800";
 
   useEffect(() => {
     setLoading(true);
@@ -45,8 +47,6 @@ const App = () => {
 
   const handleCardClick = (pokemon) => {
     setSelectedPokemon(pokemon);
-    console.log(selectedPokemon.name);
-    console.log(pokemon);
   };
 
   const closeModal = () => {
@@ -85,7 +85,7 @@ const App = () => {
       <div className="bg-zinc-600 text-center p-2 flex justify-center gap-5">
         {prevPageUrl !== null && (
           <Button
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className={styledButtons}
             name="Previous"
             onClick={() => {
               setPokemons([]);
@@ -95,7 +95,7 @@ const App = () => {
         )}
         {nextPageUrl && (
           <Button
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className={styledButtons}
             name="Next"
             onClick={() => {
               setPokemons([]);
